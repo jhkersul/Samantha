@@ -1,7 +1,12 @@
 from src.controller.speak_controller import SpeakController
 from src.controller.listen_controller import ListenController
+from src.module.module_manager import ModuleManager
 
-speak_controller = SpeakController()
-while (1==1):
-	text = ListenController.listen()
-	speak_controller.speak(text)
+i = 0
+while i<2:
+	#text = ListenController.listen()
+	#speak_controller.speak(text)
+
+	module_manager = ModuleManager()
+
+	i += 1

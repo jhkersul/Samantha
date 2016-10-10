@@ -22,3 +22,6 @@ sudo apt-get install ffmpeg libavcodec-extra
 
 echo "Installing pydub..."
 sudo pip install pydub
+
+echo "Installing Facebook API..."
+sudo pip install facebook-sdk 
