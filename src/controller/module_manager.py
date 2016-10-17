@@ -27,7 +27,7 @@ class ModuleManager(object):
 
     # Classifies a question and define the module
     def question_classifier(self, text):
-        pass
+        return None
 
     # I ask a question to module
     def question(self, text, module):
@@ -41,3 +41,21 @@ class ModuleManager(object):
     def inquire(self, text):
         SpeakController.speak(text)
         return ListenController.listen()
+
+    def keep_listening(self):
+        while True:
+            if ListenController.listen() == "Olá Samantha":
+                SpeakController.speak("Olá! Em que posso ajudar?")
+
+                module = None
+
+                while module == None:
+                    question = ListenController.listen()
+                    module = self.question_classifier(question)
+
+                    if question == "não":
+                            break
+
+                    if module == None: 
+                        SpeakController.speak("Não entendi! Repita, por favor.")
+    

@@ -14,3 +14,5 @@ class Interface(MainInterface):
 		while confirmation != "sim":
 			name =  self.inquire("Qual é o seu nome?")
 			confirmation = self.inquire("Seu nome é " + name + ", correto?")
+
+		self.answer("Ok " + name + "! Vamos começar!")
