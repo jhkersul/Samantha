@@ -5,11 +5,7 @@ class Interface(MainInterface):
 	def __init__(self, manager):
 		super(Interface, self).__init__(manager)
 
-
-	def retorno(self):
-		self.answer(self.manager_cls, "Texto")
-
-	def question(self, text):
+	def question(self, command, text):
 		if text == "estou bem":
 			ans = self.inquire("tem certeza que está bem?")
 
@@ -20,4 +16,5 @@ class Interface(MainInterface):
 
 
 	def commands(self):
-		return ["postar no facebook"]
+		return ["postar no facebook", 
+				"ver notificações"]
