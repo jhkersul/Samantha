@@ -25,7 +25,7 @@ class AudioController(object):
 		#open stream  
 		stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
 		                channels = f.getnchannels(),  
-		                rate = f.getframerate(),  
+		                rate = f.getframerate() + 3000,  
 		                output = True)  
 		#read data  
 		data = f.readframes(chunk)  

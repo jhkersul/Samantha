@@ -2,8 +2,8 @@ from src.module.main_interface import MainInterface
 
 class Interface(MainInterface):
 
-	def __init__(self):
-		super(Interface, self).__init__()
+	def __init__(self, manager):
+		super(Interface, self).__init__(manager)
 
 
 	def retorno(self):
