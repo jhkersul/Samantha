@@ -1,12 +1,18 @@
-from src.model.user import User
 
 class Session(object):
-	user = None
+	
+	keys = None
 
 	@classmethod
-	def create_user(cls, name):
-		cls.user = User(name)		
+	def save(cls, key, value):
+		if cls.keys is None:
+			cls.keys = {}
+
+		cls.keys[key] = value
 
 	@classmethod
-	def get_current_user(cls):
-		return cls.user
+	def get(cls, key):
+		if key in cls.keys:
+			return cls.keys[key]
+		else:
+			return None

@@ -4,6 +4,7 @@ class MainInterface(object):
 
 		self.answer = manager.answer
 		self.inquire = manager.inquire
+		self.save_value = manager.save_value
 
 	def question(self, command, text):
 		pass

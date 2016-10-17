@@ -16,3 +16,5 @@ class Interface(MainInterface):
 			confirmation = self.inquire("Seu nome é " + name + ", correto?")
 
 		self.answer("Ok " + name + "! Vamos começar!")
+
+		self.save_value("user_name", name)

@@ -1,5 +1,6 @@
 from src.controller.speak_controller import SpeakController
 from src.controller.listen_controller import ListenController
+from src.controller.session import Session
 
 # IMPORTED MODULES
 from src.module.introduction.interface import Interface as IntroductionInterface # INTRO MODULE
@@ -41,6 +42,10 @@ class ModuleManager(object):
     def inquire(self, text):
         SpeakController.speak(text)
         return ListenController.listen()
+
+    # Saves a value on Session
+    def save_value(self, key, value):
+        Session.save(key, value)
 
     def keep_listening(self):
         while True:
