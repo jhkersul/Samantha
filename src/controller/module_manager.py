@@ -47,6 +47,10 @@ class ModuleManager(object):
     def save_value(self, key, value):
         Session.save(key, value)
 
+    # Get a saved value on Session
+    def get_saved_value(self, key):
+        return Session.get(key)
+
     def keep_listening(self):
         while True:
             if ListenController.listen() == "Olá Samantha":
