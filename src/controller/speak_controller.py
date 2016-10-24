@@ -9,7 +9,4 @@ class SpeakController(object):
 		tts = gTTS(text=text, lang='pt-br')
 		tts.save(audio_file)
 
-		audio_controller = AudioController()
-
-		new_file_path = audio_controller.convert_mp3_to_wav(audio_file)
-		audio_controller.play_audio(new_file_path)
+		AudioController().play_audio(audio_file)

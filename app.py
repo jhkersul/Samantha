@@ -6,3 +6,4 @@ from src.controller.session import Session
 
 manager = ModuleManager()
 manager.keep_listening()
+

@@ -5,6 +5,7 @@ from src.controller.session import Session
 # IMPORTED MODULES
 from src.module.introduction.interface import Interface as IntroductionInterface # INTRO MODULE
 from src.module.facebook.interface import Interface as FacebookInterface # FACEBOOK MODULE
+from src.module.gmusic.interface import Interface as GMusicInterface # GOOGLE MUSIC MODULE
 
 
 class ModuleManager(object):
@@ -19,6 +20,9 @@ class ModuleManager(object):
     def load_modules(self):
         fb_interface = FacebookInterface(self)
         self.__modules.append(fb_interface)
+
+        gmusic_interface = GMusicInterface(self)
+        self.__modules.append(gmusic_interface)
 
     def run_intro(self):
         intro_interface = IntroductionInterface(self)
@@ -63,7 +67,7 @@ class ModuleManager(object):
 
                 while module == None:
                     question = ListenController.listen()
-                    module, command = self.question_classifier(question)
+                    module, command, text = self.question_classifier(question)
 
                     if question == "não":
                             break

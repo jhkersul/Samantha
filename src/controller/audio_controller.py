@@ -1,44 +1,24 @@
-import pyaudio  
-import wave
-from pydub import AudioSegment
+import vlc
+import time
+from threading import Thread
 
 class AudioController(object):
-	"""docstring for AudioController"""
-	def __init__(self):
-		super(AudioController, self).__init__()
 
-	def convert_mp3_to_wav(self, file_path):
-		song = AudioSegment.from_mp3(file_path)
-		new_file_path = file_path[0:-3] + "wav"
-		song.export(new_file_path, format="wav")
+	def play_audio(self, path):
+		p = vlc.MediaPlayer(path)
+		events = p.event_manager()
+		events.event_attach(vlc.EventType.MediaPlayerEndReached, self.songFinished)
+		p.play()
 
-		return new_file_path
+		self.finish = 0
 
-	def play_audio(self, file_path):
-		#define stream chunk   
-		chunk = 1024  
+		self.answer = None
 
-		#open a wav format music  
-		f = wave.open(file_path,"rb")  
-		#instantiate PyAudio  
-		p = pyaudio.PyAudio()  
-		#open stream  
-		stream = p.open(format = p.get_format_from_width(f.getsampwidth()),  
-		                channels = f.getnchannels(),  
-		                rate = f.getframerate() + 3000,  
-		                output = True)  
-		#read data  
-		data = f.readframes(chunk)  
+		while self.finish == 0:
+			sec = p.get_time() / 1000
+			m, s = divmod(sec, 60)
+			print ("%02d:%02d" % (m,s))
 
-		#paly stream  
-		while data != b'':  
-		    stream.write(data)  
-		    data = f.readframes(chunk)
-
-		#stop stream  
-		stream.stop_stream()  
-		stream.close()  
-
-		#close PyAudio  
-		p.terminate()
-		
+	def songFinished(self, event):
+		print ("Event reports - finished")
+		self.finish = 1

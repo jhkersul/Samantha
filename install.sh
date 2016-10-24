@@ -25,3 +25,15 @@ sudo pip install pydub
 
 echo "Installing Facebook API..."
 sudo pip install facebook-sdk
+
+echo "Installing GMusic libraries..."
+sudo apt-get install libav-tools libavcodec-extra
+
+echo "Install Google Music API..."
+sudo pip install gmusicapi
+
+echo "Installing VLC..."
+sudo apt-get install vlc
+
+echo "Install VLC Python..."
+sudo pip install python-vlc
