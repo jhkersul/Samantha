@@ -89,3 +89,5 @@ ENV/
 .ropeproject
 
 temp/
+
+src/module/gmusic/config.py
