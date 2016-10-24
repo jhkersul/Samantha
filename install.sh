@@ -24,4 +24,4 @@ echo "Installing pydub..."
 sudo pip install pydub
 
 echo "Installing Facebook API..."
-sudo pip install facebook-sdk 
+sudo pip install facebook-sdk

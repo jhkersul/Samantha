@@ -10,25 +10,28 @@ from src.module.facebook.interface import Interface as FacebookInterface # FACEB
 class ModuleManager(object):
 
     def __init__(self):
-        self.__modules = {}
+        self.__modules = []
 
         self.load_modules()
-        self.run_intro()
+        #self.run_intro()
 
     # Loading all modules
     def load_modules(self):
-        intro_interface = IntroductionInterface(self)
-        self.__modules['intro'] = intro_interface
-
         fb_interface = FacebookInterface(self)
-        self.__modules['fb'] = fb_interface
+        self.__modules.append(fb_interface)
 
     def run_intro(self):
-        self.__modules['intro'].greetings()
+        intro_interface = IntroductionInterface(self)
+        intro_interface.greetings()
 
     # Classifies a question and define the module
     def question_classifier(self, text):
-        return None
+        for module in self.__modules:
+            for key, value in module.commands().items():
+                if text.lower() in value:
+                    return module, key, text
+
+        return None, None, None
 
     # I ask a question to module
     def question(self, text, module):
@@ -60,11 +63,13 @@ class ModuleManager(object):
 
                 while module == None:
                     question = ListenController.listen()
-                    module = self.question_classifier(question)
+                    module, command = self.question_classifier(question)
 
                     if question == "não":
                             break
 
                     if module == None: 
                         SpeakController.speak("Não entendi! Repita, por favor.")
+                    else:
+                        module.question(command, text)
     

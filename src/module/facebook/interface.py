@@ -1,4 +1,5 @@
 from src.module.main_interface import MainInterface
+from src.module.facebook.facebook_controller import FacebookController
 
 class Interface(MainInterface):
 
@@ -6,15 +7,16 @@ class Interface(MainInterface):
 		super(Interface, self).__init__(manager)
 
 	def question(self, command, text):
-		if text == "estou bem":
-			ans = self.inquire("tem certeza que está bem?")
+		if command == "post":
+			message = self.inquire("Ok, pode dizer sua mensagem!")
+			FacebookController().post(message)
+			self.answer("Sua mensagem foi postada com sucesso")
 
-			if ans == "não":
-				self.answer("Que triste mano brown")
-			elif ans == "sim":
-				self.answer("Então beleza manolo")
 
 
 	def commands(self):
-		return ["postar no facebook", 
-				"ver notificações"]
+		commands = {
+			"post": ["postar no facebook", "postar no face"]
+		}
+
+		return commands
