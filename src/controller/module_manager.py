@@ -6,6 +6,7 @@ from src.controller.session import Session
 from src.module.introduction.interface import Interface as IntroductionInterface # INTRO MODULE
 from src.module.facebook.interface import Interface as FacebookInterface # FACEBOOK MODULE
 from src.module.gmusic.interface import Interface as GMusicInterface # GOOGLE MUSIC MODULE
+from src.module.search.interface import Interface as SearchInterface # SEARCH MODULE
 
 
 class ModuleManager(object):
@@ -24,6 +25,9 @@ class ModuleManager(object):
         gmusic_interface = GMusicInterface(self)
         self.__modules.append(gmusic_interface)
 
+        search_interface = SearchInterface(self)
+        self.__modules.append(search_interface)
+
     def run_intro(self):
         intro_interface = IntroductionInterface(self)
         intro_interface.greetings()
@@ -32,8 +36,10 @@ class ModuleManager(object):
     def question_classifier(self, text):
         for module in self.__modules:
             for key, value in module.commands().items():
-                if text.lower() in value:
-                    return module, key, text
+                for comm in value:
+                    if text.lower().find(comm) != -1 :
+                        return module, key, text
+
 
         return None, None, None
 
@@ -60,7 +66,8 @@ class ModuleManager(object):
 
     def keep_listening(self):
         while True:
-            if ListenController.listen() == "Olá Samantha":
+            listen_text = ListenController.listen().lower()
+            if  listen_text.find("olá samantha") != -1:
                 SpeakController.speak("Olá! Em que posso ajudar?")
 
                 module = None
@@ -72,8 +79,7 @@ class ModuleManager(object):
                     if question == "não":
                             break
 
-                    if module == None: 
+                    if module == None:
                         SpeakController.speak("Não entendi! Repita, por favor.")
                     else:
                         module.question(command, text)
-    

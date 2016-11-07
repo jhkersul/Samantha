@@ -37,3 +37,9 @@ sudo apt-get install vlc
 
 echo "Install VLC Python..."
 sudo pip install python-vlc
+
+echo "Installing Wikipedia"
+sudo pip install wikipedia
+
+echo "Installing "
+sudo pip3 install simplejson requests 
