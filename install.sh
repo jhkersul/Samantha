@@ -9,10 +9,10 @@ sudo apt install python3-pip
 
 echo "Installing PyAudio..."
 sudo apt-get install portaudio19-dev python-all-dev python3-all-dev -y
-sudo pip3 install PyAudio==0.2.9
+sudo pip install PyAudio==0.2.9
 
 echo "Installing SpeechRecognition..."
-sudo pip3 install SpeechRecognition
+sudo pip install SpeechRecognition
 
 echo "Installing gTTS..."
 sudo pip install gTTS
