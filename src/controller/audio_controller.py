@@ -18,6 +18,7 @@ class AudioController(object):
 			sec = p.get_time() / 1000
 			m, s = divmod(sec, 60)
 			print ("%02d:%02d" % (m,s))
+			time.sleep(1)
 
 	def songFinished(self, event):
 		print ("Event reports - finished")

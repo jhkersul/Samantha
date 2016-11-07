@@ -10,6 +10,7 @@ class Interface(MainInterface):
 	def question(self, command, text):
 		if command == "listen_music":
 			song_name = self.inquire("Ok, qual música deseja ouvir?")
+			self.answer("Ok, só um segundo.")
 			gmusic = GMusicController()
 			stream_url = gmusic.search_song(song_name)
 
@@ -21,7 +22,7 @@ class Interface(MainInterface):
 
 	def commands(self):
 		commands = {
-			"listen_music": ["ouvir música"]
+			"listen_music": ["ouvir música", "gostaria de ouvir uma música", "quero ouvir uma música"]
 		}
 
 		return commands
